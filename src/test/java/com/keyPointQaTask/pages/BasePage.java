@@ -14,16 +14,24 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.get(), this);
     }
 
-    @FindBy(xpath = "//div[@class='card-up']")
-    public WebElement subMenuButton;
-
-    @FindBy(xpath = "//div[@class='card-up']")
-    public WebElement Elements;
 
     public void navigateToModule(String tab, String modul) throws InterruptedException {
 
         BrowserUtils.scrollDown();
-        Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])''"+tab+"')"));
+
+        switch (tab){
+
+            case "Alerts, Frame & Windows":
+                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[3]")).click();
+                break;
+            case "Widgets":
+                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[4]")).click();
+                break;
+            case "Interactions":
+                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[5]")).click();
+                break;
+
+        }
 
         WebElement module = Driver.get().findElement(By.xpath("//span[text()='"+modul+"']"));
       try {
