@@ -27,6 +27,7 @@ public class WidgetsStepDefs {
     public void theUserHoverOverTheHoverMeToSeeButtonAndVerifyMessage(String message) {
         BrowserUtils.waitFor(3);
         actions.moveToElement(widgetsPage.hoverButton).build().perform();
+        BrowserUtils.waitFor(2);
         Assert.assertEquals(message,widgetsPage.blackMassage1.getText());
 
     }
