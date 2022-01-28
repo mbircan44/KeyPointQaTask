@@ -14,33 +14,24 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.get(), this);
     }
 
-
     public void navigateToModule(String tab, String modul) throws InterruptedException {
 
         BrowserUtils.scrollDown();
+        BrowserUtils.waitFor(2);
 
-        switch (tab){
+        WebElement tab1 = Driver.get().findElement(By.xpath("//h5[text()='" + tab + "']"));
 
-            case "Alerts, Frame & Windows":
-                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[3]")).click();
-                break;
-            case "Widgets":
-                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[4]")).click();
-                break;
-            case "Interactions":
-                Driver.get().findElement(By.xpath("(//div[@class='card mt-4 top-card'])[5]")).click();
-                break;
+        tab1.click();
+
+        WebElement module = Driver.get().findElement(By.xpath("//span[text()='" + modul + "']"));
+        try {
+
+            module.click();
+
+        } catch (Exception e) {
+            BrowserUtils.clickWithJS(module);
 
         }
-
-        WebElement module = Driver.get().findElement(By.xpath("//span[text()='"+modul+"']"));
-      try {
-          module.click();
-
-      }catch(Exception e){
-          BrowserUtils.clickWithJS(module);
-
-      }
     }
 
 }
