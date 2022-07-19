@@ -14,7 +14,6 @@ public class Hooks {
         Driver.get().manage().window().maximize();
         Driver.get().manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
 
-
     }
 
     @After
